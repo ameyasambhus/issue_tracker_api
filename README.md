@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Issue Tracker API
 
-## Getting Started
+## Project Overview
+Issue Tracker API is a **backend application** built with **Next.js, Prisma, and MySQL**.  
+It allows users to create and manage issues, track their status, and assign them to other users for collaboration.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- **JWT Authentication** – Secure login and protected routes  
+- **User Management** – Register, login, and manage users  
+- **Issue Management** – Create, update, and delete issues  
+- **Status Tracking** – Issues can be set as:
+  - `open`
+  - `in_progress`
+  - `closed`  
+- **Assignments** – Assign issues to other users  
+- **Database** – MySQL with Prisma ORM  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Implementation Details
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Backend:**
+- Next.js API Routes for RESTful endpoints  
+- Prisma ORM connected to MySQL database  
+- Secure JWT authentication for protected routes  
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Database:**
+- MySQL schema managed through Prisma  
+- Models for `User` and `Issue` with relationships to track assignees  
