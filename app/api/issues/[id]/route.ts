@@ -24,7 +24,12 @@ export async function PATCH(
   const parsed = updateIssueSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json(parsed.error, { status: 400 });
 
-  const data: any = {};
+  const data: {
+    title?: string;
+    description?: string;
+    status?: "OPEN" | "IN_PROGRESS" | "CLOSED";
+    assignedTo?: { disconnect: true } | { connect: { id: string } };
+  } = {};
   if (parsed.data.title !== undefined) data.title = parsed.data.title;
   if (parsed.data.description !== undefined) data.description = parsed.data.description;
   if (parsed.data.status !== undefined) data.status = parsed.data.status;
@@ -62,8 +67,8 @@ export async function DELETE(
       where: { id: Number(id) },
     });
     return NextResponse.json(deleted, { status: 200 });
-  } catch (error: any) {
-    if (error.code === "P2025") {
+  } catch (error: unknown) {
+    if (error && typeof error === 'object' && 'code' in error && error.code === "P2025") {
       return NextResponse.json({ error: "Issue not found" }, { status: 404 });
     }
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });

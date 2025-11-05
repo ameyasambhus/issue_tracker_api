@@ -19,7 +19,7 @@ export async function POST(request: NextRequest){
     if(!validation.success){
         return NextResponse.json(validation.error, {status:400})
     }
-    const { title, description, assignedToId } = validation.data as any;
+    const { title, description, assignedToId } = validation.data;
     let connectAssignee = undefined as undefined | { assignedTo: { connect: { id: string } } };
     if (assignedToId) {
         const user = await prisma.user.findUnique({ where: { id: assignedToId } });
